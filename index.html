@@ -1,12 +1,30 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Anshraj Home Workout</title>
+    <title>Anshraj Fitness | Home Workout & Fitness</title>
+
+    <meta name="description"
+          content="Anshraj Fitness - Professional home workout, fitness programs, trainers and personal fitness guidance.">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -14,382 +32,2083 @@
             scroll-behavior: smooth;
         }
 
+        :root {
+            --green: #00e676;
+            --dark-green: #00a854;
+            --black: #080808;
+            --dark: #111;
+            --gray: #1b1b1b;
+            --light: #f5f7f6;
+            --white: #ffffff;
+            --text: #222;
+            --muted: #777;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f7f6;
-            color: #222;
+            font-family: "Inter", Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navbar */
-        nav {
-            background: #111;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav h2 {
-            color: #00e676;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav ul li a {
-            color: white;
+        a {
             text-decoration: none;
-            font-weight: bold;
         }
 
-        nav ul li a:hover {
-            color: #00e676;
+        img {
+            width: 100%;
+            display: block;
         }
 
-        /* Hero */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #111, #263238);
-            color: white;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
         }
 
-        .hero h1 {
-            font-size: 55px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #00e676;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #00e676;
-            color: #111;
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            background: white;
-        }
-
-        /* Sections */
         section {
-            padding: 70px 8%;
+            padding: 100px 0;
         }
 
-        .title {
+        .section-title {
             text-align: center;
-            font-size: 35px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
-        /* Workout Cards */
-        .workouts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+        .section-title span {
+            color: var(--dark-green);
         }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .card .icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 900;
             margin-bottom: 12px;
         }
 
-        .card p {
-            color: #555;
-            line-height: 1.6;
+        .section-title p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: auto;
         }
 
-        /* Routine */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 28px;
+            background: var(--green);
+            color: #000;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: .3s;
+            border: 2px solid var(--green);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            background: transparent;
+            color: var(--green);
+        }
+
+        .btn-dark {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-dark:hover {
+            background: white;
+            color: black;
+        }
+
+
+        /* =========================
+           LOADER
+        ========================= */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #080808;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #333;
+            border-top-color: var(--green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8,8,8,.92);
+            backdrop-filter: blur(12px);
+            padding: 18px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .menu-btn {
+            display: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.35)),
+                url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2000&q=90")
+                center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 760px;
+            padding-top: 80px;
+            animation: heroIn 1s ease;
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0,230,118,.12);
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 8px 15px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 82px);
+            line-height: 1.05;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--green);
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #ddd;
+            margin-bottom: 30px;
+            max-width: 650px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            background: var(--green);
+            padding: 35px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat h3 {
+            font-size: 38px;
+            font-weight: 900;
+        }
+
+        .stat p {
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           WORKOUTS
+        ========================= */
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .workout-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,.08);
+            transition: .4s;
+        }
+
+        .workout-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,.15);
+        }
+
+        .workout-img {
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .workout-content {
+            padding: 25px;
+        }
+
+        .workout-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .workout-content p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .level {
+            color: var(--dark-green);
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           ROUTINE
+        ========================= */
+
         .routine {
-            background: #111;
+            background: var(--black);
             color: white;
         }
 
         .routine-box {
-            max-width: 800px;
+            max-width: 850px;
             margin: auto;
         }
 
         .exercise {
-            background: #222;
+            background: #171717;
+            padding: 22px;
             margin: 15px 0;
-            padding: 20px;
-            border-left: 5px solid #00e676;
-            border-radius: 8px;
+            border-radius: 12px;
+            border-left: 5px solid var(--green);
+            transition: .3s;
+        }
+
+        .exercise:hover {
+            transform: translateX(8px);
         }
 
         .exercise h3 {
-            color: #00e676;
-            margin-bottom: 8px;
+            color: var(--green);
+            margin-bottom: 5px;
         }
 
-        /* Tips */
-        .tips {
+        .exercise span {
+            color: #aaa;
+        }
+
+
+        /* =========================
+           TIMER
+        ========================= */
+
+        .timer-section {
+            text-align: center;
+            background: #e9fdf2;
+        }
+
+        .timer {
+            font-size: 75px;
+            font-weight: 900;
+            margin: 25px 0;
+        }
+
+        .timer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .timer-buttons button {
+            border: none;
+            padding: 13px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 800;
+            background: var(--green);
+        }
+
+
+        /* =========================
+           TRAINERS
+        ========================= */
+
+        .trainer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
         }
 
-        .tip {
+        .trainer {
             background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,.08);
+        }
+
+        .trainer img {
+            height: 330px;
+            object-fit: cover;
+        }
+
+        .trainer-content {
             padding: 25px;
+        }
+
+        .trainer-content h3 {
+            margin-bottom: 5px;
+        }
+
+        .trainer-content p {
+            color: var(--dark-green);
+            font-weight: 700;
+        }
+
+        .social {
+            margin-top: 15px;
+        }
+
+        .social a {
+            display: inline-flex;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background: #eee;
+            color: #111;
+            margin: 3px;
+        }
+
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 12px;
+        }
+
+        .gallery img {
+            height: 230px;
+            object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: .4s;
         }
 
-        .tip h3 {
-            margin-bottom: 10px;
-            color: #009624;
+        .gallery img:hover {
+            transform: scale(1.04);
         }
 
-        /* About */
-        .about {
+
+        /* =========================
+           PRICING
+        ========================= */
+
+        .pricing {
+            background: #f0f3f2;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.8;
+            box-shadow: 0 8px 30px rgba(0,0,0,.08);
         }
 
-        /* Footer */
-        footer {
-            background: #111;
+        .price-card.featured {
+            background: var(--black);
             color: white;
+            transform: scale(1.04);
+        }
+
+        .price {
+            font-size: 45px;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .price-card li {
+            padding: 8px;
+        }
+
+
+        /* =========================
+           TESTIMONIALS
+        ========================= */
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .stars {
+            color: #f5b400;
+            margin-bottom: 15px;
+        }
+
+        .testimonial p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial h4 {
+            color: var(--dark-green);
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            background: var(--black);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info h2 span {
+            color: var(--green);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin: 25px 0;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green);
+            color: black;
+            border-radius: 50%;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 3px;
+        }
+
+        .contact-item p {
+            color: #aaa;
+        }
+
+        .contact-item a {
+            color: #aaa;
+        }
+
+        .contact-form {
+            background: #151515;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #222;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           MAP
+        ========================= */
+
+        .map {
+            margin-top: 60px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+
+        /* =========================
+           FAQ
+        ========================= */
+
+        .faq {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        details {
+            background: white;
+            padding: 20px;
+            margin: 12px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.06);
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #050505;
+            color: white;
+            padding: 60px 0 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer h3 span {
+            color: var(--green);
+        }
+
+        footer p,
+        footer a {
+            color: #999;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin: 8px 0;
+        }
+
+        .copyright {
+            border-top: 1px solid #222;
+            padding-top: 20px;
             text-align: center;
-            padding: 25px;
+            color: #777;
         }
 
-        footer span {
-            color: #00e676;
+
+        /* =========================
+           WHATSAPP
+        ========================= */
+
+        .whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 58px;
+            height: 58px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0,0,0,.3);
+            animation: pulse 2s infinite;
         }
 
-        /* Mobile */
-        @media(max-width: 700px) {
-            nav {
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37,211,102,.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(37,211,102,0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37,211,102,0);
+            }
+        }
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        #topBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 95px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: var(--green);
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 900px) {
+
+            .workout-grid,
+            .trainer-grid,
+            .pricing-grid,
+            .testimonial-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+
+            section {
+                padding: 70px 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #111;
                 flex-direction: column;
-                gap: 15px;
+                align-items: center;
+                padding: 25px;
+                display: none;
             }
 
-            nav ul {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-links.active {
+                display: flex;
             }
 
-            .hero h1 {
-                font-size: 38px;
+            .menu-btn {
+                display: block;
+            }
+
+            .workout-grid,
+            .trainer-grid,
+            .pricing-grid,
+            .testimonial-grid,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <h2>💪 ANSHRAJ FITNESS</h2>
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-circle"></div>
+</div>
 
-        <ul>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+            💪 ANSHRAJ<span> FITNESS</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#workouts">Workouts</a></li>
             <li><a href="#routine">Routine</a></li>
-            <li><a href="#tips">Tips</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+            <li><a href="#pricing">Plans</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div>
-            <h1>WORKOUT <span>AT HOME</span></h1>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                <i class="fas fa-fire"></i>
+                START YOUR FITNESS JOURNEY
+            </span>
+
+            <h1>
+                BUILD YOUR
+                <span>STRONGER</span>
+                SELF.
+            </h1>
 
             <p>
-                Get stronger, healthier and fitter without going to the gym.
+                Professional home workouts, fitness programs and
+                expert guidance to help you become stronger,
+                healthier and more confident.
             </p>
 
-            <a href="#workouts" class="btn">START WORKOUT</a>
-        </div>
-    </section>
+            <div class="hero-buttons">
 
-    <!-- Workout Section -->
-    <section id="workouts">
+                <a href="#workouts" class="btn">
+                    Explore Workouts
+                    <i class="fas fa-arrow-right"></i>
+                </a>
 
-        <h2 class="title">🏋️ Home Workout Exercises</h2>
+                <a href="#contact" class="btn btn-dark">
+                    Contact Us
+                </a>
 
-        <div class="workouts">
-
-            <div class="card">
-                <div class="icon">🔥</div>
-                <h3>Jumping Jacks</h3>
-                <p>Great cardio exercise for warming up your whole body.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">💪</div>
-                <h3>Push Ups</h3>
-                <p>Build strength in your chest, shoulders and arms.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🦵</div>
-                <h3>Squats</h3>
-                <p>Strengthen your legs and improve lower-body fitness.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🏃</div>
-                <h3>High Knees</h3>
-                <p>Improve your cardio fitness and coordination.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🔥</div>
-                <h3>Mountain Climbers</h3>
-                <p>A full-body exercise that improves endurance.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🧘</div>
-                <h3>Plank</h3>
-                <p>Strengthen your core and improve body stability.</p>
             </div>
 
         </div>
-    </section>
 
-    <!-- Routine Section -->
-    <section class="routine" id="routine">
+    </div>
 
-        <h2 class="title">⏱️ 20 Minute Workout Routine</h2>
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+    <div class="container stats-grid">
+
+        <div class="stat">
+            <h3 class="counter" data-target="1000">0</h3>
+            <p>Happy Members+</p>
+        </div>
+
+        <div class="stat">
+            <h3 class="counter" data-target="50">0</h3>
+            <p>Workout Programs</p>
+        </div>
+
+        <div class="stat">
+            <h3 class="counter" data-target="10">0</h3>
+            <p>Expert Trainers</p>
+        </div>
+
+        <div class="stat">
+            <h3 class="counter" data-target="5">0</h3>
+            <p>Years Experience</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WORKOUTS
+========================= -->
+
+<section id="workouts">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Choose Your <span>Workout</span></h2>
+            <p>
+                Choose a workout according to your fitness goal
+                and experience level.
+            </p>
+        </div>
+
+        <div class="workout-grid">
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=900&q=80"
+                     alt="Beginner workout">
+
+                <div class="workout-content">
+                    <h3>Beginner Workout</h3>
+                    <p>Perfect for people starting their fitness journey.</p>
+                    <span class="level">● Beginner</span>
+                </div>
+
+            </div>
+
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
+                     alt="Strength workout">
+
+                <div class="workout-content">
+                    <h3>Strength Training</h3>
+                    <p>Build strength with simple bodyweight exercises.</p>
+                    <span class="level">● Intermediate</span>
+                </div>
+
+            </div>
+
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=900&q=80"
+                     alt="Cardio workout">
+
+                <div class="workout-content">
+                    <h3>Cardio Blast</h3>
+                    <p>Improve stamina and burn energy with cardio exercises.</p>
+                    <span class="level">● All Levels</span>
+                </div>
+
+            </div>
+
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80"
+                     alt="Core workout">
+
+                <div class="workout-content">
+                    <h3>Core Training</h3>
+                    <p>Strengthen your abs and improve core stability.</p>
+                    <span class="level">● Intermediate</span>
+                </div>
+
+            </div>
+
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80"
+                     alt="HIIT workout">
+
+                <div class="workout-content">
+                    <h3>HIIT Training</h3>
+                    <p>Short, intense workouts for improving fitness.</p>
+                    <span class="level">● Advanced</span>
+                </div>
+
+            </div>
+
+
+            <div class="workout-card">
+
+                <img class="workout-img"
+                     src="https://images.unsplash.com/photo-1554244933-d876deb6b2ff?auto=format&fit=crop&w=900&q=80"
+                     alt="Yoga">
+
+                <div class="workout-content">
+                    <h3>Yoga & Flexibility</h3>
+                    <p>Improve flexibility, balance and relaxation.</p>
+                    <span class="level">● All Levels</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ROUTINE
+========================= -->
+
+<section class="routine" id="routine">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>20 Minute <span>Home Routine</span></h2>
+            <p style="color:#aaa">
+                A simple routine you can perform at home.
+            </p>
+        </div>
 
         <div class="routine-box">
 
             <div class="exercise">
-                <h3>1. Jumping Jacks — 2 Minutes</h3>
-                <p>Start slowly and gradually increase your speed.</p>
+                <h3>01. Jumping Jacks — 2 Minutes</h3>
+                <span>Warm up your body and increase your heart rate.</span>
             </div>
 
             <div class="exercise">
-                <h3>2. Push Ups — 3 Sets × 10</h3>
-                <p>Keep your body straight while performing push-ups.</p>
+                <h3>02. Push Ups — 3 × 10</h3>
+                <span>Target your chest, shoulders and arms.</span>
             </div>
 
             <div class="exercise">
-                <h3>3. Squats — 3 Sets × 15</h3>
-                <p>Keep your back straight and push through your feet.</p>
+                <h3>03. Bodyweight Squats — 3 × 15</h3>
+                <span>Strengthen your legs and glutes.</span>
             </div>
 
             <div class="exercise">
-                <h3>4. Mountain Climbers — 2 Minutes</h3>
-                <p>Maintain a steady pace and keep your core engaged.</p>
+                <h3>04. Mountain Climbers — 2 Minutes</h3>
+                <span>Improve cardio fitness and full-body endurance.</span>
             </div>
 
             <div class="exercise">
-                <h3>5. Plank — 30 Seconds × 3</h3>
-                <p>Keep your body in a straight line and breathe normally.</p>
+                <h3>05. Plank — 30 Seconds × 3</h3>
+                <span>Build core strength and stability.</span>
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <!-- Tips Section -->
-    <section id="tips">
+</section>
 
-        <h2 class="title">🌟 Fitness Tips</h2>
 
-        <div class="tips">
+<!-- =========================
+     TIMER
+========================= -->
 
-            <div class="tip">
-                <h3>💧 Stay Hydrated</h3>
-                <p>Drink enough water before, during and after your workout.</p>
-            </div>
+<section class="timer-section">
 
-            <div class="tip">
-                <h3>🥗 Eat Healthy</h3>
-                <p>Include nutritious foods, vegetables, fruits and protein in your diet.</p>
-            </div>
+    <div class="container">
 
-            <div class="tip">
-                <h3>😴 Get Enough Sleep</h3>
-                <p>Good sleep helps your body recover after exercise.</p>
-            </div>
-
-            <div class="tip">
-                <h3>📅 Be Consistent</h3>
-                <p>Regular workouts are more useful than exercising only occasionally.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-
-        <h2 class="title">👨‍💻 About Me</h2>
-
-        <div class="about">
+        <div class="section-title">
+            <h2>⏱️ Workout <span>Timer</span></h2>
             <p>
-                Hello! My name is <strong>Anshraj Nayak</strong>.
-                I created this website to help people start their
-                fitness journey from home.
-            </p>
-
-            <p>
-                You don't always need expensive gym equipment.
-                Start with simple exercises, stay consistent
-                and take care of your health.
+                Use this simple timer while doing your exercises.
             </p>
         </div>
 
-    </section>
+        <div class="timer" id="timer">
+            00:30
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            © 2026 <span>Anshraj Fitness</span> | Home Workout Website
-        </p>
-    </footer>
+        <div class="timer-buttons">
+
+            <button onclick="startTimer()">
+                <i class="fas fa-play"></i> Start
+            </button>
+
+            <button onclick="pauseTimer()">
+                <i class="fas fa-pause"></i> Pause
+            </button>
+
+            <button onclick="resetTimer()">
+                <i class="fas fa-rotate"></i> Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TRAINERS
+========================= -->
+
+<section id="trainers">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Meet Our <span>Trainers</span></h2>
+            <p>
+                Get guidance from fitness professionals.
+            </p>
+        </div>
+
+        <div class="trainer-grid">
+
+            <div class="trainer">
+
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=900&q=80"
+                     alt="Fitness trainer">
+
+                <div class="trainer-content">
+
+                    <h3>Anshraj Nayak</h3>
+
+                    <p>Fitness Coach</p>
+
+                    <div class="social">
+
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="trainer">
+
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80"
+                     alt="Female fitness trainer">
+
+                <div class="trainer-content">
+
+                    <h3>Priya Sharma</h3>
+
+                    <p>Yoga & Fitness Coach</p>
+
+                    <div class="social">
+
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="trainer">
+
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80"
+                     alt="Personal trainer">
+
+                <div class="trainer-content">
+
+                    <h3>Rahul Verma</h3>
+
+                    <p>Strength Coach</p>
+
+                    <div class="social">
+
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Fitness <span>Gallery</span></h2>
+            <p>
+                Get inspired and start your fitness journey today.
+            </p>
+        </div>
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Gym">
+
+            <img src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=800&q=80" alt="Workout">
+
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Fitness">
+
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80" alt="Training">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================= -->
+
+<section class="pricing" id="pricing">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Membership <span>Plans</span></h2>
+            <p>
+                Choose a plan according to your fitness goals.
+            </p>
+        </div>
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+
+                <h3>Basic</h3>
+
+                <div class="price">
+                    ₹499
+                    <small>/month</small>
+                </div>
+
+                <ul>
+                    <li>✓ Home Workout Plans</li>
+                    <li>✓ Beginner Exercises</li>
+                    <li>✓ Fitness Tips</li>
+                    <li>✓ Weekly Guidance</li>
+                </ul>
+
+                <a href="#contact" class="btn">
+                    Join Now
+                </a>
+
+            </div>
+
+
+            <div class="price-card featured">
+
+                <h3>Pro</h3>
+
+                <div class="price">
+                    ₹999
+                    <small>/month</small>
+                </div>
+
+                <ul>
+                    <li>✓ Personalized Workout</li>
+                    <li>✓ Trainer Guidance</li>
+                    <li>✓ Nutrition Guidance</li>
+                    <li>✓ Progress Tracking</li>
+                </ul>
+
+                <a href="#contact" class="btn">
+                    Join Pro
+                </a>
+
+            </div>
+
+
+            <div class="price-card">
+
+                <h3>Premium</h3>
+
+                <div class="price">
+                    ₹1,999
+                    <small>/month</small>
+                </div>
+
+                <ul>
+                    <li>✓ Personal Trainer</li>
+                    <li>✓ Custom Workout Plan</li>
+                    <li>✓ Nutrition Guidance</li>
+                    <li>✓ 1-to-1 Support</li>
+                </ul>
+
+                <a href="#contact" class="btn">
+                    Join Premium
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TESTIMONIALS
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>What Members <span>Say</span></h2>
+            <p>
+                Feedback from people following our fitness programs.
+            </p>
+        </div>
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "The home workout routine is simple and easy
+                    to follow. I really enjoy exercising at home."
+                </p>
+
+                <h4>— Aman</h4>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "The workout timer and exercise plans make
+                    my daily fitness routine much easier."
+                </p>
+
+                <h4>— Riya</h4>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Great website for beginners who want to
+                    start working out without expensive equipment."
+                </p>
+
+                <h4>— Rohit</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+
+                <h2>
+                    Let's Start Your
+                    <span>Fitness Journey.</span>
+                </h2>
+
+                <p style="color:#aaa">
+                    Have questions about workouts, membership
+                    or personal training? Contact us today.
+                </p>
+
+
+                <div class="contact-item">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <div>
+                        <h4>Our Location</h4>
+
+                        <p>
+                            Your Gym Address,<br>
+                            Shahdol, Madhya Pradesh, India
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fas fa-phone"></i>
+
+                    <div>
+                        <h4>Phone</h4>
+
+                        <a href="tel:+919999999999">
+                            +91 99999 99999
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <div>
+                        <h4>Email</h4>
+
+                        <a href="mailto:info@anshrajfitness.com">
+                            info@anshrajfitness.com
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fas fa-clock"></i>
+
+                    <div>
+                        <h4>Opening Hours</h4>
+
+                        <p>
+                            Monday - Saturday<br>
+                            6:00 AM - 9:00 PM
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT FORM -->
+
+            <div class="contact-form">
+
+                <h3 style="margin-bottom:20px;">
+                    Send Us a Message
+                </h3>
+
+                <form onsubmit="sendMessage(event)">
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your Name"
+                        required>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone Number"
+                        required>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email Address"
+                        required>
+
+                    <select id="program" required>
+
+                        <option value="">
+                            Select Program
+                        </option>
+
+                        <option>
+                            Beginner Workout
+                        </option>
+
+                        <option>
+                            Strength Training
+                        </option>
+
+                        <option>
+                            Cardio
+                        </option>
+
+                        <option>
+                            Personal Training
+                        </option>
+
+                    </select>
+
+                    <textarea
+                        id="message"
+                        placeholder="Your Message"
+                        required></textarea>
+
+                    <button class="btn" type="submit">
+                        Send Message
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAP -->
+
+        <div class="map">
+
+            <iframe
+                src="https://www.google.com/maps?q=Shahdol,Madhya%20Pradesh,India&output=embed"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Frequently Asked <span>Questions</span></h2>
+
+        </div>
+
+        <div class="faq">
+
+            <details>
+
+                <summary>
+                    Can I workout at home without equipment?
+                </summary>
+
+                <p>
+                    Yes. Many exercises such as squats, push-ups,
+                    planks and lunges can be performed without equipment.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>
+                    How many days should I workout?
+                </summary>
+
+                <p>
+                    Beginners can start with a manageable routine
+                    several days per week and gradually increase
+                    frequency based on recovery and fitness goals.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>
+                    Do you provide personal training?
+                </summary>
+
+                <p>
+                    Yes. Contact us to discuss available personal
+                    training options.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>
+                    Do I need a gym membership?
+                </summary>
+
+                <p>
+                    No. Our home workout programs are designed
+                    so that many exercises can be performed at home.
+                </p>
+
+            </details>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    ANSHRAJ<span> FITNESS</span>
+                </h3>
+
+                <p>
+                    Your partner for a healthier,
+                    stronger and more active lifestyle.
+                </p>
+
+                <div class="social">
+
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#workouts">Workouts</a>
+                    </li>
+
+                    <li>
+                        <a href="#trainers">Trainers</a>
+                    </li>
+
+                    <li>
+                        <a href="#pricing">Plans</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Programs</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#workouts">Strength</a>
+                    </li>
+
+                    <li>
+                        <a href="#workouts">Cardio</a>
+                    </li>
+
+                    <li>
+                        <a href="#workouts">HIIT</a>
+                    </li>
+
+                    <li>
+                        <a href="#workouts">Yoga</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <p>
+                    📍 Shahdol, Madhya Pradesh
+                </p>
+
+                <p>
+                    📞 +91 99999 99999
+                </p>
+
+                <p>
+                    ✉️ info@anshrajfitness.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Anshraj Fitness.
+            All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp"
+   href="https://wa.me/919999999999"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+
+<!-- BACK TO TOP -->
+
+<button id="topBtn" onclick="goTop()">
+    ↑
+</button>
+
+
+<script>
+
+    /* =========================
+       PAGE LOADER
+    ========================= */
+
+    window.addEventListener("load", function() {
+
+        document.getElementById("loader").style.display = "none";
+
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    function toggleMenu() {
+
+        document
+            .getElementById("navLinks")
+            .classList
+            .toggle("active");
+
+    }
+
+
+    /* =========================
+       COUNTER ANIMATION
+    ========================= */
+
+    const counters =
+        document.querySelectorAll(".counter");
+
+    counters.forEach(counter => {
+
+        const target =
+            Number(counter.dataset.target);
+
+        let count = 0;
+
+        const update = () => {
+
+            const increment =
+                Math.ceil(target / 80);
+
+            count += increment;
+
+            if (count >= target) {
+
+                counter.innerText =
+                    target + (target >= 1000 ? "+" : "+");
+
+            } else {
+
+                counter.innerText = count;
+
+                setTimeout(update, 25);
+
+            }
+
+        };
+
+        update();
+
+    });
+
+
+    /* =========================
+       WORKOUT TIMER
+    ========================= */
+
+    let time = 30;
+    let timerInterval = null;
+
+    function updateTimer() {
+
+        let seconds =
+            time.toString().padStart(2, "0");
+
+        document.getElementById("timer")
+            .innerText = "00:" + seconds;
+
+    }
+
+
+    function startTimer() {
+
+        if (timerInterval) return;
+
+        timerInterval = setInterval(() => {
+
+            if (time > 0) {
+
+                time--;
+
+                updateTimer();
+
+            } else {
+
+                clearInterval(timerInterval);
+
+                timerInterval = null;
+
+                alert("Workout complete! Great job! 💪");
+
+            }
+
+        }, 1000);
+
+    }
+
+
+    function pauseTimer() {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+    }
+
+
+    function resetTimer() {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+        time = 30;
+
+        updateTimer();
+
+    }
+
+
+    /* =========================
+       CONTACT FORM
+    ========================= */
+
+    function sendMessage(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value;
+
+        const phone =
+            document.getElementById("phone").value;
+
+        const program =
+            document.getElementById("program").value;
+
+        const message =
+            document.getElementById("message").value;
+
+        const text =
+            `Hello Anshraj Fitness!
+
+Name: ${name}
+Phone: ${phone}
+Program: ${program}
+
+Message:
+${message}`;
+
+        const whatsappURL =
+            "https://wa.me/919999999999?text="
+            + encodeURIComponent(text);
+
+        window.open(whatsappURL, "_blank");
+
+    }
+
+
+    /* =========================
+       BACK TO TOP
+    ========================= */
+
+    const topBtn =
+        document.getElementById("topBtn");
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 500) {
+
+            topBtn.style.display = "block";
+
+        } else {
+
+            topBtn.style.display = "none";
+
+        }
+
+    });
+
+
+    function goTop() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
 
 </body>
 </html>
+```
